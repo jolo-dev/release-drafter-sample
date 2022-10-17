@@ -1,5 +1,4 @@
-name-template: 'This is clearly a foo'
-tag-template: 'This is clearly a foo'
+version-template: '$MAJOR.$MINOR'
 template: |
   ## Changes
 
