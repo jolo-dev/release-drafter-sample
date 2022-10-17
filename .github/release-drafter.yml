@@ -1,5 +1,5 @@
-name-template: 'v$NEXT_PATCH_VERSION.Foo'
-tag-template: 'v$NEXT_PATCH_VERSION.Foo'
+name-template: 'v$RESOLVED_VERSION.Foo'
+tag-template: 'v$RESOLVED_VERSION.Foo'
 template: |
   ## Changes
 
