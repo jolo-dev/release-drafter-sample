@@ -1,5 +1,3 @@
-name-template: 'This is clearly a foo'
-tag-template: 'This is clearly a foo'
 template: |
   ## Changes
 
