@@ -32,7 +32,7 @@ jobs:
       - name: semantic_version
         id: semantic_version
         run: |
-          if [$REF == "refs/heads/dev"]
+          if [[ $REF == *"dev"* ]]
           then
               echo "::set-output name=value::alpha1"
           else
