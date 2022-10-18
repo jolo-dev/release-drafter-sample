@@ -32,7 +32,7 @@ jobs:
       - name: semantic_version
         id: semantic_version
         run: |
-          if [$REF == *_"$dev"_*]
+          if [$REF == "refs/heads/dev"]
           then
               echo "::set-output name=value::alpha1"
           else
@@ -47,6 +47,5 @@ jobs:
           # base_ref = target branch
           name: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
           tag: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
-          version-template: '$MAJOR.$MINOR'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

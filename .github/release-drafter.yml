@@ -1,3 +1,4 @@
+version-template: '$MAJOR.$MINOR'
 template: |
   ## Changes
 
