@@ -38,18 +38,7 @@ jobs:
           then
               echo "::set-output name=value::alpha1"
           fi
-          if ["$REF_NAME" == "test"]
-          then
-              echo "::set-output name=value::beta1"
-          fi
-          if ["$REF_NAME" == "qa"]
-          then
-              echo "::set-output name=value::rc.1"
-          fi
-          if ["$REF_NAME" == "main"]
-          then
-              echo "Prod deployment"
-          fi
+
         env:
           REF_NAME: ${{ github.ref_name }}
       - uses: release-drafter/release-drafter@v5
