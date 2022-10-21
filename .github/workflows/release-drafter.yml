@@ -30,33 +30,17 @@ jobs:
       #- name: Set GHE_HOST
       #  run: |
       #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
+      - name: checkout
+        id: checkout
+        uses: actions/checkout@v3
 
       - name: semantic_version
         id: semantic_version
-        run: |
-          if [$REF_NAME == "dev"]
-          then
-              echo "::set-output name=value::alpha1"
-          fi
-          if [$REF_NAME == "test"]
-          then
-              echo "::set-output name=value::beta1"
-          fi
-          if [$REF_NAME == "qa"]
-          then
-              echo "::set-output name=value::rc.1"
-          fi
-          if [$REF_NAME == "main"]
-          then
-              echo "Prod deployment"
-          fi
+        run: ./.github/workflows/helper.sh
         env:
           REF_NAME: ${{ github.ref_name }}
       - uses: release-drafter/release-drafter@v5
         with:
-          # Override the default name
-          # head_ref = source branch
-          # base_ref = target branch
           name: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
           tag: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
         env:
