@@ -8,8 +8,10 @@ on:
       - dev
   pull_request:
     branches:
-      - main
       - dev
+      - test
+      - qa
+      - main
     # Only following types are handled by the action, but one can default to all as well
     types: [opened, reopened, synchronize]
 
@@ -32,11 +34,21 @@ jobs:
       - name: semantic_version
         id: semantic_version
         run: |
-          if [[ $REF == *"dev"* ]]
+          if [$REF == *"dev"*]
           then
               echo "::set-output name=value::alpha1"
-          else
-              echo "::set-output name=value::false"
+          fi
+          if [$REF == *"test"*]
+          then
+              echo "::set-output name=value::beta1"
+          fi
+          if [$REF == *"qa"*]
+          then
+              echo "::set-output name=value::rc.1"
+          fi
+          if [$REF == *"main"*]
+          then
+              echo "Prod deployment"
           fi
         env:
           REF: ${{ github.ref }}
