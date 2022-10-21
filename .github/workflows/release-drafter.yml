@@ -40,12 +40,15 @@ jobs:
               echo "::set-output name=value::alpha1"
           fi
           if [$BASE_REF == 'test']
+          then
               echo "::set-output name=value::beta1"
           fi
           if [$BASE_REF == 'qa']
+          then
               echo "::set-output name=value::rc.1"
           fi
           if [$BASE_REF == 'main']
+          then
               echo "Prod deployment"
           fi
         env:
