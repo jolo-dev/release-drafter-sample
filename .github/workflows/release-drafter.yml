@@ -3,8 +3,10 @@ name: Release Drafter
 on:
   pull_request:
     branches:
-      - main
       - dev
+      - test
+      - qa
+      - main
     # Only following types are handled by the action, but one can default to all as well
     types: [opened, reopened, synchronize]
 
@@ -27,15 +29,24 @@ jobs:
       - name: semantic_version
         id: semantic_version
         run: |
+          echo $FOO
           if [$BASE_REF == 'dev']
           then
               echo "::set-output name=value::alpha1"
-          else
-              echo "::set-output name=value::false"
+          fi
+          if [$BASE_REF == 'test']
+              echo "::set-output name=value::beta1"
+          fi
+          if [$BASE_REF == 'qa']
+              echo "::set-output name=value::rc.1"
+          fi
+          if [$BASE_REF == 'main']
+              echo "Prod deployment"
           fi
         env:
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
+          FOO: ${{ github }}
       - uses: release-drafter/release-drafter@v5
         with:
           # Override the default name
