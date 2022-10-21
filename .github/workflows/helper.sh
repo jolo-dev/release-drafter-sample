@@ -1,7 +1,5 @@
 #!/bin/bash
 
-REF_NAME="foo"
-
 DEV="dev"
 TEST="test"
 QA="qa"
