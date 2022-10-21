@@ -34,24 +34,24 @@ jobs:
       - name: semantic_version
         id: semantic_version
         run: |
-          if [$REF == *"dev"*]
+          if [$REF == "dev"]
           then
               echo "::set-output name=value::alpha1"
           fi
-          if [$REF == *"test"*]
+          if [$REF == "test"]
           then
               echo "::set-output name=value::beta1"
           fi
-          if [$REF == *"qa"*]
+          if [$REF == "qa"]
           then
               echo "::set-output name=value::rc.1"
           fi
-          if [$REF == *"main"*]
+          if [$REF == "main"]
           then
               echo "Prod deployment"
           fi
         env:
-          REF: ${{ github.ref }}
+          REF: ${{ github.ref_name }}
       - uses: release-drafter/release-drafter@v5
         with:
           # Override the default name
