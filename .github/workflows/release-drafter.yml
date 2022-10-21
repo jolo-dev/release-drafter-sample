@@ -34,19 +34,19 @@ jobs:
       - name: semantic_version
         id: semantic_version
         run: |
-          if [$REF_NAME == "dev"]
+          if ["$REF_NAME" == "dev"]
           then
               echo "::set-output name=value::alpha1"
           fi
-          if [$REF_NAME == "test"]
+          if ["$REF_NAME" == "test"]
           then
               echo "::set-output name=value::beta1"
           fi
-          if [$REF_NAME == "qa"]
+          if ["$REF_NAME" == "qa"]
           then
               echo "::set-output name=value::rc.1"
           fi
-          if [$REF_NAME == "main"]
+          if ["$REF_NAME" == "main"]
           then
               echo "Prod deployment"
           fi
