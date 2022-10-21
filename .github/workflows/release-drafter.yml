@@ -1,6 +1,11 @@
 name: Release Drafter
 
 on:
+  push:
+    # branches to consider in the event; optional, defaults to all
+    branches:
+      - main
+      - dev
   pull_request:
     branches:
       - dev
@@ -54,6 +59,5 @@ jobs:
           # base_ref = target branch
           name: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
           tag: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
-          version-template: '$MAJOR.$MINOR'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
