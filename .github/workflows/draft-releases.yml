@@ -1,4 +1,4 @@
-name: Release Drafter
+name: Draft Releases
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
 
       - name: semantic_version
         id: semantic_version
-        run: ./.github/workflows/helper.sh
+        run: ./.github/workflows/release-helper.sh
         env:
           REF_NAME: ${{ github.ref_name }}
       - uses: release-drafter/release-drafter@v5
