@@ -1,4 +1,6 @@
 version-template: '$MAJOR.$MINOR'
+version-resolver:
+  default: minor
 template: |
   ## Changes
 
