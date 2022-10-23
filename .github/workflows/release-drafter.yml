@@ -2,10 +2,11 @@ name: Release Drafter
 
 on:
   push:
-    # branches to consider in the event; optional, defaults to all
     branches:
       - main
       - dev
+      - test
+      - qa
   pull_request:
     branches:
       - dev
@@ -13,7 +14,7 @@ on:
       - qa
       - main
     # Only following types are handled by the action, but one can default to all as well
-    types: [opened, reopened, synchronize]
+    types: [closed]
 
 
 permissions:
@@ -40,6 +41,7 @@ jobs:
         env:
           REF_NAME: ${{ github.ref_name }}
       - uses: release-drafter/release-drafter@v5
+        if: github.event.pull_request.merged == true
         with:
           name: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
           tag: v$RESOLVED_VERSION${{ steps.semantic_version.outputs.value }}
