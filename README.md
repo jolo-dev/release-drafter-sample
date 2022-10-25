@@ -22,6 +22,8 @@ The responsible person still needs to press the `publish`- Button.
 
 The Github actions get triggers whenever a PR got **merged** to the above mentioned branches.
 
+![push-to-dev](./push-to-dev.gif)
+
 As a first step, it checks out this repository. This is necessary because we use a helper (`.github/workflows/release-helper.sh`) otherwise the bash-script won't be accessible.
 
 That script will be executed in the second step (`semantic_version`).
